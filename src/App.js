@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import MiniDrawer from "./components/PersistentDrawer";
-import Footer from "./components/Footer";
+
+
+
 
 
 
@@ -10,8 +12,6 @@ class App extends Component {
         return (
             <div className="App">
                 <MiniDrawer/>
-                {/*<NestedList/>*/}
-                <Footer/>
             </div>
 
         );

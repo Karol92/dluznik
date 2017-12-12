@@ -18,12 +18,14 @@ import InboxIcon from 'material-ui-icons/MoveToInbox';
 import DraftsIcon from 'material-ui-icons/Drafts';
 import SendIcon from 'material-ui-icons/Send';
 import StarBorder from 'material-ui-icons/StarBorder';
-
+import EnchancedTable from "./DebtList";
+import CheckboxListSecondary from "./FriendsList";
 
 const drawerWidth = 240;
 
 const styles = theme => ({
     root: {
+        float: 'left',
         width: '100%',
         height: 800,
         marginTop: theme.spacing.unit * 3,
@@ -205,7 +207,8 @@ class MiniDrawer extends React.Component {
                     </Drawer>
                     <main className={classes.content}>
                         <Typography type="body1" noWrap>
-                            {'You think water moves fast? You should see ice.'}
+                            <EnchancedTable/>
+                            <CheckboxListSecondary/>
                         </Typography>
                     </main>
                 </div>
