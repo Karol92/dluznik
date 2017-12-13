@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
+import {withStyles} from 'material-ui/styles';
+import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
-import Avatar from 'material-ui/Avatar';
+import Avatar from 'react-avatar';
 
 const styles = theme => ({
     root: {
@@ -24,7 +24,7 @@ class CheckboxListSecondary extends React.Component {
     };
 
     handleToggle = value => () => {
-        const { checked } = this.state;
+        const {checked} = this.state;
         const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
 
@@ -40,21 +40,22 @@ class CheckboxListSecondary extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
         return (
             <div className={classes.root}>
                 <List>
                     {[0, 1, 2, 3].map(value => (
                         <ListItem key={value} dense button className={classes.listItem}>
-                            <Avatar alt="Remy Sharp" src="noimg.png" />
-                            <ListItemText primary={`Line item ${value + 1}`} />
+                            <Avatar facebookId="100003072226409" size="80"/>
+                            <ListItemText primary={`Line item ${value + 1}`}/>
                             <ListItemSecondaryAction>
                                 <Checkbox
                                     onChange={this.handleToggle(value)}
                                     checked={this.state.checked.indexOf(value) !== -1}
                                 />
                             </ListItemSecondaryAction>
+
                         </ListItem>
                     ))}
                 </List>

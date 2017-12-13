@@ -20,6 +20,10 @@ import SendIcon from 'material-ui-icons/Send';
 import StarBorder from 'material-ui-icons/StarBorder';
 import EnchancedTable from "./DebtList";
 import CheckboxListSecondary from "./FriendsList";
+import PaperSheet from './Paper';
+import Button from 'material-ui/Button';
+
+
 
 const drawerWidth = 240;
 
@@ -31,12 +35,14 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
         zIndex: 1,
         overflow: 'hidden',
+
     },
     appFrame: {
         position: 'relative',
         display: 'flex',
         width: '100%',
         height: '100%',
+
     },
     appBar: {
         position: 'absolute',
@@ -101,6 +107,9 @@ const styles = theme => ({
             marginTop: 64,
         },
     },
+    button:{
+        float: 'right',
+    },
 });
 
 
@@ -123,6 +132,7 @@ class MiniDrawer extends React.Component {
 
         return (
             <div className={classes.root}>
+
                 <div className={classes.appFrame}>
                     <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
                         <Toolbar disableGutters={!this.state.open}>
@@ -137,6 +147,9 @@ class MiniDrawer extends React.Component {
                             <Typography type="title" color="inherit" noWrap>
                                 Mini variant drawer
                             </Typography>
+                            <Button raised color="dense" className={classes.button}>
+                                Login
+                            </Button>
                         </Toolbar>
                     </AppBar>
                     <Drawer
@@ -208,6 +221,7 @@ class MiniDrawer extends React.Component {
                     <main className={classes.content}>
                         <Typography type="body1" noWrap>
                             <EnchancedTable/>
+                            <PaperSheet/>
                             <CheckboxListSecondary/>
                         </Typography>
                     </main>
