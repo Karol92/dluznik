@@ -26,15 +26,15 @@ import FilterListIcon from 'material-ui-icons/FilterList';
 
 let counter = 0;
 
-function createData(name, payment, fat) {
+function createData(name, payment, dateOfPayment) {
     counter += 1;
-    return {id: counter, name, payment, fat};
+    return {id: counter, name, payment, dateOfPayment};
 }
 
 const columnData = [
     {id: 'name', numeric: false, disablePadding: true, label: 'Name'},
     {id: 'payment', numeric: true, disablePadding: false, label: 'Payment'},
-    {id: 'fat', numeric: true, disablePadding: false, label: 'Date of payment'},
+    {id: 'dateOfPayment', numeric: true, disablePadding: false, label: 'Date of payment'},
 ];
 
 class EnhancedTableHead extends React.Component {
@@ -180,7 +180,7 @@ class EnhancedTable extends React.Component {
 
         this.state = {
             order: 'asc',
-            orderBy: 'calories',
+            orderBy: '',
             selected: [],
             data: [
                 createData('Adam ', 305, 12.7),
@@ -290,7 +290,7 @@ class EnhancedTable extends React.Component {
                                         </TableCell>
                                         <TableCell padding="none">{n.name}</TableCell>
                                         <TableCell numeric>{n.payment}</TableCell>
-                                        <TableCell numeric>{n.fat}</TableCell>
+                                        <TableCell numeric>{n.dateOfPayment}</TableCell>
                                     </TableRow>
                                 );
                             })}

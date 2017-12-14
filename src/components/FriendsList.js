@@ -1,20 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-import List, {ListItem, ListItemSecondaryAction, ListItemText} from 'material-ui/List';
+import { withStyles } from 'material-ui/styles';
+import List, { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'react-avatar';
 
 const styles = theme => ({
     root: {
         float: 'right',
-        marginTop: theme.spacing.unit * 3,
-    },
-    table: {
-        minWidth: 150,
-    },
-    tableWrapper: {
-        overflowX: 'auto',
+        width: '100%',
+        maxWidth: 360,
+        background: theme.palette.background.paper,
     },
 });
 
@@ -24,7 +20,7 @@ class CheckboxListSecondary extends React.Component {
     };
 
     handleToggle = value => () => {
-        const {checked} = this.state;
+        const { checked } = this.state;
         const currentIndex = checked.indexOf(value);
         const newChecked = [...checked];
 
@@ -40,7 +36,7 @@ class CheckboxListSecondary extends React.Component {
     };
 
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
 
         return (
             <div className={classes.root}>
@@ -55,7 +51,6 @@ class CheckboxListSecondary extends React.Component {
                                     checked={this.state.checked.indexOf(value) !== -1}
                                 />
                             </ListItemSecondaryAction>
-
                         </ListItem>
                     ))}
                 </List>

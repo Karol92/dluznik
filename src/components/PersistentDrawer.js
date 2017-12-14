@@ -21,7 +21,9 @@ import StarBorder from 'material-ui-icons/StarBorder';
 import EnchancedTable from "./DebtList";
 import CheckboxListSecondary from "./FriendsList";
 import PaperSheet from './Paper';
-import Button from 'material-ui/Button';
+import FormLogin from "./FormLogin";
+import FormRegistration from "./FormRegistration";
+
 
 
 
@@ -31,7 +33,7 @@ const styles = theme => ({
     root: {
         float: 'left',
         width: '100%',
-        height: 800,
+        height: 876,
         marginTop: theme.spacing.unit * 3,
         zIndex: 1,
         overflow: 'hidden',
@@ -99,7 +101,7 @@ const styles = theme => ({
         width: '100%',
         flexGrow: 1,
         backgroundColor: theme.palette.background.default,
-        padding: 24,
+        padding: 50,
         height: 'calc(100% - 56px)',
         marginTop: 56,
         [theme.breakpoints.up('sm')]: {
@@ -147,9 +149,8 @@ class MiniDrawer extends React.Component {
                             <Typography type="title" color="inherit" noWrap>
                                 Mini variant drawer
                             </Typography>
-                            <Button raised color="dense" className={classes.button}>
-                                Login
-                            </Button>
+                            <FormLogin/>
+                            <FormRegistration/>
                         </Toolbar>
                     </AppBar>
                     <Drawer
