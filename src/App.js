@@ -4,7 +4,6 @@ import MiniDrawer from "./components/PersistentDrawer";
 import LabelBottomNavigation from "./components/Footer";
 
 
-
 class App extends Component {
     render() {
         return (

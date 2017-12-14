@@ -23,6 +23,9 @@ import IconButton from 'material-ui/IconButton';
 import Tooltip from 'material-ui/Tooltip';
 import DeleteIcon from 'material-ui-icons/Delete';
 import FilterListIcon from 'material-ui-icons/FilterList';
+// import {ListItem, ListItemIcon, ListItemText} from "material-ui";
+// import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
+import FormAddDebt from "./FormAddDebt";
 
 let counter = 0;
 
@@ -46,6 +49,11 @@ class EnhancedTableHead extends React.Component {
         orderBy: PropTypes.string.isRequired,
         rowCount: PropTypes.number.isRequired,
     };
+
+    handleClickOpen = () => {
+        this.setState({ open: true });
+    };
+
 
     createSortHandler = property => event => {
         this.props.onRequestSort(event, property);
@@ -307,9 +315,10 @@ class EnhancedTable extends React.Component {
                                     rowsPerPage={rowsPerPage}
                                     page={page}
                                     onChangePage={this.handleChangePage}
-                                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                                    // onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                 />
                             </TableRow>
+                            <FormAddDebt/>
                         </TableFooter>
                     </Table>
                 </div>

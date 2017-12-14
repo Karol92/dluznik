@@ -18,7 +18,7 @@ function PaperSheet(props) {
     const {classes} = props;
     return (
         <div>
-            <Paper className={classes.root} elevation={4}>
+            <Paper className={classes.root} elevation={4} >
 
             </Paper>
         </div>
