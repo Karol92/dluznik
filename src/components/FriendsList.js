@@ -11,6 +11,8 @@ const styles = theme => ({
         width: '100%',
         maxWidth: 360,
         background: theme.palette.background.paper,
+        elevation: '4',
+        zDepth: '5',
     },
 });
 

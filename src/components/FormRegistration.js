@@ -15,6 +15,10 @@ import {FormControl} from 'material-ui/Form';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 
+import {CircularProgress} from 'material-ui/Progress';
+import green from 'material-ui/colors/green';
+import classNames from 'classnames';
+
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -26,11 +30,34 @@ const styles = theme => ({
     withoutLabel: {
         marginTop: theme.spacing.unit * 3,
     },
+    buttonSuccess: {
+        backgroundColor: green[500],
+        '&:hover': {
+            backgroundColor: green[700],
+        },
+    },
+    fabProgress: {
+        color: green[500],
+        position: 'absolute',
+        top: -6,
+        left: -6,
+        zIndex: 1,
+    },
+    buttonProgress: {
+        color: green[500],
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        marginTop: -12,
+        marginLeft: -12,
+    },
 });
- class FormRegistration extends React.Component {
+
+class FormRegistration extends React.Component {
     state = {
         open: false,
-
+        loading: false,
+        success: false,
         password: '',
         showPassword: false,
     };
@@ -55,9 +82,33 @@ const styles = theme => ({
     handleRequestClose = () => {
         this.setState({open: false});
     };
+    handleButtonClick = () => {
+        if (!this.state.loading) {
+            this.setState(
+                {
+                    success: false,
+                    loading: true,
+                },
+                () => {
+                    this.timer = setTimeout(() => {
+                        this.setState({
+                            loading: false,
+                            success: true,
+                        });
+                    }, 2000);
+                },
+            );
+        }
+    };
+    timer = undefined;
 
     render() {
         const {classes} = this.props;
+        const {loading, success} = this.state;
+        const buttonClassname = classNames({
+            [classes.buttonSuccess]: success,
+        });
+
         return (
             <div className={classes.root}>
                 <Button onClick={this.handleClickOpen} color="contrast">Registration</Button>
@@ -108,9 +159,20 @@ const styles = theme => ({
                         <Button onClick={this.handleRequestClose} color="primary">
                             Cancel
                         </Button>
-                        <Button onClick={this.handleRequestClose} color="primary">
-                            Registration
-                        </Button>
+                        <div className={classes.root}>
+                            <div className={classes.wrapper}>
+                                <Button
+                                    raised
+                                    color="primary"
+                                    className={buttonClassname}
+                                    disabled={loading}
+                                    onClick={this.handleButtonClick}
+                                >
+                                    Registration
+                                </Button>
+                                {loading && <CircularProgress size={24} className={classes.buttonProgress}/>}
+                            </div>
+                        </div>
                     </DialogActions>
                 </Dialog>
             </div>
@@ -118,6 +180,7 @@ const styles = theme => ({
     }
 
 }
+
 FormRegistration.propTypes = {
     classes: PropTypes.object.isRequired,
 };
