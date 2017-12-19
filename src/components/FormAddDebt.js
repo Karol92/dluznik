@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Dialog, {
@@ -9,6 +9,7 @@ import Dialog, {
 import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
 import {ListItem, ListItemIcon, ListItemText} from "material-ui";
 import MenuItem from 'material-ui/Menu/MenuItem';
+import List from './List';
 
 const currencies = [
     {
@@ -34,8 +35,27 @@ export default class FormAddDebt extends React.Component {
     state = {
         open: false,
         currency: 'PLN',
+        term: '',
+        items: []
+    };
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         term: '',
+    //         items: []
+    //     };
+    // }
+    onChange = (event) => {
+        this.setState({ term: event.target.value });
     };
 
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.setState({
+            term: '',
+            items: [...this.state.items, this.state.term]
+        });
+    };
     handleClickOpen = () => {
         this.setState({open: true});
     };
@@ -73,6 +93,9 @@ export default class FormAddDebt extends React.Component {
                             label="Name:"
                             type="text"
                             fullWidth
+                            onSubmit={this.onSubmit}
+                            value={this.state.term} onChange={this.onChange}
+
                         />
                     </DialogContent>
                     <DialogContent>
@@ -111,6 +134,13 @@ export default class FormAddDebt extends React.Component {
                             fullWidth
                         />
                     </DialogContent>
+                    <div>
+                        <form className="App" onSubmit={this.onSubmit}>
+                            <input value={this.state.term} onChange={this.onChange} />
+                            <button>Submit</button>
+                        </form>
+                        <List items={this.state.items} />
+                    </div>
                     <DialogActions>
                         <Button onClick={this.handleRequestClose} color="primary">
                             Cancel

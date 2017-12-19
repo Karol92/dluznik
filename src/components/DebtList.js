@@ -26,6 +26,7 @@ import FilterListIcon from 'material-ui-icons/FilterList';
 // import {ListItem, ListItemIcon, ListItemText} from "material-ui";
 // import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
 import FormAddDebt from "./FormAddDebt";
+import List from "./List";
 
 let counter = 0;
 
@@ -51,7 +52,7 @@ class EnhancedTableHead extends React.Component {
     };
 
     handleClickOpen = () => {
-        this.setState({ open: true });
+        this.setState({open: true});
     };
 
 
@@ -201,8 +202,23 @@ class EnhancedTable extends React.Component {
             ].sort((a, b) => (a.payment < b.payment ? -1 : 1)),
             page: 0,
             rowsPerPage: 5,
+            term: '',
+            items: [],
         };
     }
+
+
+    onChange = (event) => {
+        this.setState({term: event.target.value});
+    };
+
+    onSubmit = (event) => {
+        event.preventDefault();
+        this.setState({
+            term: '',
+            items: [...this.state.items, this.state.term]
+        });
+    };
 
     handleRequestSort = (event, property) => {
         const orderBy = property;
@@ -280,9 +296,11 @@ class EnhancedTable extends React.Component {
                             rowCount={data.length}
                         />
                         <TableBody>
+                            <List items={this.state.items}/>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
                                 const isSelected = this.isSelected(n.id);
                                 return (
+
                                     <TableRow
                                         hover
                                         onClick={event => this.handleClick(event, n.id)}
@@ -300,6 +318,7 @@ class EnhancedTable extends React.Component {
                                         <TableCell numeric>{n.payment}</TableCell>
                                         <TableCell numeric>{n.dateOfPayment}</TableCell>
                                     </TableRow>
+
                                 );
                             })}
                             {emptyRows > 0 && (
@@ -317,10 +336,19 @@ class EnhancedTable extends React.Component {
                                     onChangePage={this.handleChangePage}
                                     // onChangeRowsPerPage={this.handleChangeRowsPerPage}
                                 />
+
                             </TableRow>
+
                             <FormAddDebt/>
                         </TableFooter>
                     </Table>
+                </div>
+                <div>
+                    <form className="App" onSubmit={this.onSubmit}>
+                        <input value={this.state.term} onChange={this.onChange}/>
+                        <button>Submit</button>
+                    </form>
+                    <List items={this.state.items}/>
                 </div>
             </Paper>
         );
