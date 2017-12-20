@@ -20,7 +20,7 @@ import SendIcon from 'material-ui-icons/Send';
 import StarBorder from 'material-ui-icons/StarBorder';
 import EnchancedTable from "./DebtList";
 import CheckboxListSecondary from "./FriendsList";
-import PaperSheet from './Paper';
+// import PaperSheet from './Paper';
 import FormLogin from "./FormLogin";
 import FormRegistration from "./FormRegistration";
 
@@ -223,7 +223,7 @@ class MiniDrawer extends React.Component {
                     <main className={classes.content}>
                         <Typography type="body1" noWrap>
                             <EnchancedTable/>
-                            <PaperSheet/>
+                            {/*<PaperSheet/>*/}
                             <CheckboxListSecondary/>
                         </Typography>
                     </main>

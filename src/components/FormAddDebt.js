@@ -36,7 +36,7 @@ export default class FormAddDebt extends React.Component {
         open: false,
         currency: 'PLN',
         term: '',
-        items: []
+        names: []
     };
     // constructor(props) {
     //     super(props);
@@ -53,7 +53,7 @@ export default class FormAddDebt extends React.Component {
         event.preventDefault();
         this.setState({
             term: '',
-            items: [...this.state.items, this.state.term]
+            names: [...this.state.names, this.state.term]
         });
     };
     handleClickOpen = () => {
@@ -139,7 +139,7 @@ export default class FormAddDebt extends React.Component {
                             <input value={this.state.term} onChange={this.onChange} />
                             <button>Submit</button>
                         </form>
-                        <List items={this.state.items} />
+                        <List names={this.state.names} />
                     </div>
                     <DialogActions>
                         <Button onClick={this.handleRequestClose} color="primary">

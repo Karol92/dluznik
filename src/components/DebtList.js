@@ -187,6 +187,7 @@ class EnhancedTable extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        // this.addDebt = this.addDebt.bind(this);
         this.state = {
             order: 'asc',
             orderBy: '',
@@ -203,7 +204,7 @@ class EnhancedTable extends React.Component {
             page: 0,
             rowsPerPage: 5,
             term: '',
-            items: [],
+            names: [],
         };
     }
 
@@ -216,7 +217,7 @@ class EnhancedTable extends React.Component {
         event.preventDefault();
         this.setState({
             term: '',
-            items: [...this.state.items, this.state.term]
+            names: [...this.state.names, this.state.term]
         });
     };
 
@@ -296,7 +297,7 @@ class EnhancedTable extends React.Component {
                             rowCount={data.length}
                         />
                         <TableBody>
-                            <List items={this.state.items}/>
+                            <List names={this.state.names}/>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
                                 const isSelected = this.isSelected(n.id);
                                 return (
@@ -339,19 +340,25 @@ class EnhancedTable extends React.Component {
 
                             </TableRow>
 
-                            <FormAddDebt/>
+                            <FormAddDebt
+                                // addDebt={() => this.addDebt()}
+                            />
                         </TableFooter>
                     </Table>
                 </div>
                 <div>
-                    <form className="App" onSubmit={this.onSubmit}>
+                    <form onSubmit={this.onSubmit}>
                         <input value={this.state.term} onChange={this.onChange}/>
                         <button>Submit</button>
                     </form>
-                    <List items={this.state.items}/>
+                    <List names={this.state.names}/>
                 </div>
             </Paper>
         );
+
+        // addDebt(){
+        //
+        // }
     }
 }
 
