@@ -9,7 +9,7 @@ import Dialog, {
 import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
 import {ListItem, ListItemIcon, ListItemText} from "material-ui";
 import MenuItem from 'material-ui/Menu/MenuItem';
-import List from './List';
+// import List from './List';
 
 const currencies = [
     {
@@ -36,15 +36,11 @@ export default class FormAddDebt extends React.Component {
         open: false,
         currency: 'PLN',
         term: '',
-        names: []
+        names: [],
+        payment: []
     };
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         term: '',
-    //         items: []
-    //     };
-    // }
+
+
     onChange = (event) => {
         this.setState({ term: event.target.value });
     };
@@ -53,7 +49,8 @@ export default class FormAddDebt extends React.Component {
         event.preventDefault();
         this.setState({
             term: '',
-            names: [...this.state.names, this.state.term]
+            names: [...this.state.names, this.state.term],
+            payment: [...this.state.payment]
         });
     };
     handleClickOpen = () => {
@@ -68,6 +65,7 @@ export default class FormAddDebt extends React.Component {
     handleChange = name => event => {
         this.setState({
             [name]: event.target.value,
+
         });
     };
 
@@ -75,7 +73,7 @@ export default class FormAddDebt extends React.Component {
 
 
         return (
-            <div>
+            <div onSubmit={this.handleSubmit}>
                 <ListItem button onClick={this.handleClickOpen} inset primary="Starred">
                     <ListItemIcon>
                         <LibraryAddIcon/>
@@ -134,13 +132,14 @@ export default class FormAddDebt extends React.Component {
                             fullWidth
                         />
                     </DialogContent>
-                    <div>
-                        <form className="App" onSubmit={this.onSubmit}>
-                            <input value={this.state.term} onChange={this.onChange} />
-                            <button>Submit</button>
-                        </form>
-                        <List names={this.state.names} />
-                    </div>
+                    {/*<div>*/}
+                        {/*<form className="App" onSubmit={this.onSubmit}>*/}
+                            {/*<input value={this.state.term} onChange={this.onChange} />*/}
+                            {/*<input value={this.state.term} onChange={this.onChange} />*/}
+                            {/*<button>Submit</button>*/}
+                        {/*</form>*/}
+                        {/*<List names={this.state.names} />*/}
+                    {/*</div>*/}
                     <DialogActions>
                         <Button onClick={this.handleRequestClose} color="primary">
                             Cancel

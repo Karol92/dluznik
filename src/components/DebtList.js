@@ -26,7 +26,7 @@ import FilterListIcon from 'material-ui-icons/FilterList';
 // import {ListItem, ListItemIcon, ListItemText} from "material-ui";
 // import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
 import FormAddDebt from "./FormAddDebt";
-import List from "./List";
+// import List from "./List";
 
 let counter = 0;
 
@@ -187,7 +187,11 @@ class EnhancedTable extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
         // this.addDebt = this.addDebt.bind(this);
+
         this.state = {
             order: 'asc',
             orderBy: '',
@@ -206,6 +210,16 @@ class EnhancedTable extends React.Component {
             term: '',
             names: [],
         };
+    }
+
+
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event) {
+        alert('A name was submitted: ' + this.state.value);
+        event.preventDefault();
     }
 
 
@@ -297,7 +311,7 @@ class EnhancedTable extends React.Component {
                             rowCount={data.length}
                         />
                         <TableBody>
-                            <List names={this.state.names}/>
+                            {/*<List names={this.state.names}/>*/}
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(n => {
                                 const isSelected = this.isSelected(n.id);
                                 return (
@@ -341,21 +355,25 @@ class EnhancedTable extends React.Component {
                             </TableRow>
 
                             <FormAddDebt
-                                // addDebt={() => this.addDebt()}
+                                 addDebt={() => this.addDebt()}
                             />
                         </TableFooter>
                     </Table>
                 </div>
                 <div>
-                    <form onSubmit={this.onSubmit}>
-                        <input value={this.state.term} onChange={this.onChange}/>
-                        <button>Submit</button>
-                    </form>
-                    <List names={this.state.names}/>
+                    {/*<form onSubmit={this.onSubmit}>*/}
+                        {/*<input value={this.state.term} onChange={this.onChange}/>*/}
+                        {/*<button>Submit</button>*/}
+                    {/*</form>*/}
+                    {/*<List names={this.state.names}/>*/}
+                    {/*<form onSubmit={this.handleSubmit}>*/}
+                        {/*<input type="text" value={this.state.value} onChange={this.handleChange}/>*/}
+                        {/*<input type="submit" value="Submit"/>*/}
+                    {/*</form>*/}
                 </div>
             </Paper>
         );
-
+        //
         // addDebt(){
         //
         // }

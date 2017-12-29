@@ -23,8 +23,7 @@ import CheckboxListSecondary from "./FriendsList";
 // import PaperSheet from './Paper';
 import FormLogin from "./FormLogin";
 import FormRegistration from "./FormRegistration";
-
-
+import SimpleCard from './Cards';
 
 
 const drawerWidth = 240;
@@ -110,7 +109,7 @@ const styles = theme => ({
             marginTop: 64,
         },
     },
-    button:{
+    button: {
         float: 'right',
     },
 });
@@ -225,6 +224,12 @@ class MiniDrawer extends React.Component {
                             <EnchancedTable/>
                             {/*<PaperSheet/>*/}
                             <CheckboxListSecondary/>
+                            <SimpleCard/>
+                            <SimpleCard/>
+                            <SimpleCard/>
+                            <SimpleCard/>
+                            <SimpleCard/>
+                            <SimpleCard/>
                         </Typography>
                     </main>
                 </div>
